@@ -37,7 +37,7 @@ gulp.task('concatInterface', () => {
 gulp.task('jsBrowserify', ['concatInterface'], () => {
   return browserify({entries: ['./tmp/allConcat.js']})
     .bundle()
-    .pipe(source('app.js').on('error', (e) => console.log(e)))
+    .pipe(source('app.js'))
     .pipe(gulp.dest('./build/js'));
 });
 

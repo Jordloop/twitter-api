@@ -18,7 +18,7 @@ TwitterApi.prototype.basicSearch = function(searchQuery) {
   this.twit.get('search/tweets', {q: searchQuery, count: 10})
     .then(response => {
       response.data.statuses.forEach(status => {
-        console.log(`Status: ${status.text}`)
+        console.log(`Status: ${status.text}`);
       });
     })
     .catch(error => console.log('found an error!', error.stack));
@@ -34,19 +34,20 @@ TwitterApi.prototype.userSearch = function(searchQuery) {
 
 TwitterApi.prototype.getUserTimeline = function(username) {
   this.twit.get('statuses/user_timeline', {screen_name: username})
-    .then(response => {
-      response.data.forEach(status => {
-        console.log(`Status: ${status.text}`)
-      });
-    })
+    .then(response => response.data.forEach(status => {
+      console.log(`Status: ${status.text}`);
+    }))
     .catch(error => console.log('errrrrrrrrrrrr', error.stack));
 };
 
 
 exports.twitterModule = TwitterApi;
 
-//execute below
-//--------------------
+
+
+//-------------------------//
+//  Node execution area:   //
+//-------------------------//
 const twitAPI = new TwitterApi();
 
 // twitAPI.basicSearch('javascript');

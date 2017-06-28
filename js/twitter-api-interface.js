@@ -1,8 +1,4 @@
-const TwitterApi = require('./../js/twitter-api.js').twitterModule;
-// const twit = require('twit');
+const displayBasicSearch = (result) => $("#basic-search").append(result);
 
 
-$(() => {
-  const twitAPI = new TwitterApi();
-  $("#output").text(twitAPI.basicSearch('javascript'));
-});
+exports.basicSearchModule = displayBasicSearch;
