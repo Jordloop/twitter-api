@@ -24,13 +24,31 @@ TwitterApi.prototype.basicSearch = function(searchQuery) {
     .catch(error => console.log('found an error!', error.stack));
 };
 
+TwitterApi.prototype.userSearch = function(searchQuery) {
+  this.twit.get('users/lookup', {screen_name: searchQuery})
+    .then(response => {
+      console.log(response.data[0]);
+    })
+    .catch(error => console.log('errrrrrrrrrrrr', error.stack));
+};
+
+TwitterApi.prototype.getUserTimeline = function(username) {
+  this.twit.get('statuses/user_timeline', {screen_name: username})
+    .then(response => {
+      response.data.forEach(status => {
+        console.log(`Status: ${status.text}`)
+      });
+    })
+    .catch(error => console.log('errrrrrrrrrrrr', error.stack));
+};
+
 
 exports.twitterModule = TwitterApi;
-
-
 
 //execute below
 //--------------------
 const twitAPI = new TwitterApi();
 
-twitAPI.basicSearch('javascript');
+// twitAPI.basicSearch('javascript');
+// twitAPI.userSearch('senorfairchild');
+// twitAPI.getUserTimeline('senorfairchild');
